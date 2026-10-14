@@ -1,4 +1,4 @@
-```java
+
 package com.student.performance_predictor;
 
 import java.util.List;
@@ -15,8 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -27,7 +27,6 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(
             UserRepository userRepository) {
-
         return email -> {
             User user = userRepository.findByEmail(email)
                     .orElseThrow(() ->
@@ -50,10 +49,8 @@ public class SecurityConfig {
     public DaoAuthenticationProvider authenticationProvider(
             UserDetailsService userDetailsService,
             PasswordEncoder passwordEncoder) {
-
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider(userDetailsService);
-
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
@@ -73,22 +70,17 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-
-        config.setAllowedOriginPatterns(
-                List.of(
-                    "http://localhost:5173",
-                    "https://*.vercel.app"
-                ));
-
+        config.setAllowedOriginPatterns(List.of(
+                "http://localhost:5173",
+                "https://*.vercel.app"
+        ));
         config.setAllowedMethods(
                 List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
-
         source.registerCorsConfiguration("/**", config);
         return source;
     }
@@ -98,7 +90,6 @@ public class SecurityConfig {
             HttpSecurity http,
             DaoAuthenticationProvider authenticationProvider)
             throws Exception {
-
         http
             .csrf(csrf -> csrf.disable())
             .cors(Customizer.withDefaults())
@@ -120,4 +111,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-```
