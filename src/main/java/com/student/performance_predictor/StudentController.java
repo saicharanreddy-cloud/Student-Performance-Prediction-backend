@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://student-performance-prediction-frontend-u3dm.onrender.com")
 public class StudentController {
 
     private final StudentRepository studentRepository;

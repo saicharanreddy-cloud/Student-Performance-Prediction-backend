@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(
-    origins = "http://localhost:5173",
+    origins = "https://student-performance-prediction-frontend-u3dm.onrender.com",
     allowCredentials = "true"
 )
 public class AuthController {

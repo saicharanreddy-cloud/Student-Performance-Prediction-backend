@@ -71,7 +71,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(List.of(
-                "http://localhost:5173",
+                "https://student-performance-prediction-frontend-u3dm.onrender.com",
                 "https://*.vercel.app"
         ));
         config.setAllowedMethods(
